@@ -2,6 +2,7 @@ import * as ReadableAPI from '../utils/api';
 
 export const RECEIVE_POSTS = 'RECEIVE_ALL_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
+export const SORT_POSTS = 'SORT_POSTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const VOTE_ON_POST = 'VOTE_ON_POST';
 
@@ -26,6 +27,13 @@ export const receivePost = (post) => {
 export const fetchPost = id => dispatch => (
   ReadableAPI.getPostById(id).then(post => dispatch(receivePost(post)))
 );
+
+export const sortPosts = (option) => {
+  return {
+    type: SORT_POSTS,
+    option
+  };
+};
 
 export const receiveComments = (comments) => {
   return {

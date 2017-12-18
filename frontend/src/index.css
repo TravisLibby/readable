@@ -15,6 +15,20 @@ body {
   margin: 40px 0;
 }
 
+.add-post {
+  color: #3498db;
+  cursor: pointer;
+  margin-left: 40px;
+}
+
+.add-post:hover {
+  color: #2980b9;
+}
+
+.add-post-icon {
+  margin-top: -3px;
+}
+
 ul {
   list-style-type: none;
 }
@@ -110,4 +124,29 @@ ul {
 
 .thumb-up, .score {
   margin-right: 10px;
+}
+
+.sorting {
+  margin-bottom: 20px;
+}
+
+.sorting button {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.post-form input,
+.post-form textarea {
+  margin-bottom: 20px;
+  padding: 10px 5px;
+}
+
+.post-form button[type="submit"] {
+  margin-left: 20px;
+}
+
+.post-form .post-author,
+.post-form .post-title,
+.post-form .post-body {
+  width: 300px;
 }

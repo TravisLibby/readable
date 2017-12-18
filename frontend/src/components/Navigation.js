@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
+import FaPlusSquare from 'react-icons/lib/fa/plus-square';
 
 class Navigation extends Component {
   render() {
@@ -17,6 +18,11 @@ class Navigation extends Component {
           </li>
           <li>
             <NavLink to="/udacity">Udacity</NavLink>
+          </li>
+          <li>
+            <NavLink to="/add-post">
+              <span className="add-post"><FaPlusSquare className="add-post-icon" /> Add Post</span>
+            </NavLink>
           </li>
         </ul>
       </div>

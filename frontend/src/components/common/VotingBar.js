@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as API from '../../utils/api';
 import {fetchPostVote} from '../../actions';
 import ThumbsUp from 'react-icons/lib/fa/thumbs-up';
 import ThumbsDown from 'react-icons/lib/fa/thumbs-down';

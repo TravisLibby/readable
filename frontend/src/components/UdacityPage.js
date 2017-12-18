@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PostsList from './common/PostsList';
+import Navigation from './Navigation';
 import {categories} from '../constants/categories';
 
 class UdacityPage extends Component {
@@ -9,6 +10,7 @@ class UdacityPage extends Component {
 
     return (
       <div>
+        <Navigation />
         <PostsList posts={posts} />
       </div>
     );

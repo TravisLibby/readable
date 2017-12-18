@@ -14,6 +14,17 @@ const defaultData = {
     deleted: false,
     commentCount: 2
   },
+  "8xf0y6ziytuyvozdd253nd": {
+    id: '8xf0y6ziytuyvozdd253nd',
+    timestamp: 1468479767190,
+    title: 'Udacity is pretty cool',
+    body: 'Everyone says so after all.',
+    author: 'thingtwo',
+    category: 'react',
+    voteScore: 9,
+    deleted: false,
+    commentCount: 0
+  },
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
     timestamp: 1468479767190,

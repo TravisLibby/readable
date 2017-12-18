@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PostsListItem from './PostsListItem';
+import SortingBar from './SortingBar';
 
-const PostsList = (props) => {
-    const {posts} = props;
+class PostsList extends Component {
+  render() {
+    const {posts} = this.props;
 
     return (
       <div>
+        <SortingBar />
         {posts.length > 0 && (
           <ul className="posts-list">
             {posts.map((post, index) => (
@@ -17,6 +20,7 @@ const PostsList = (props) => {
         )}
       </div>
     );
-};
+  }
+}
 
 export default PostsList;
