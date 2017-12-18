@@ -4,7 +4,6 @@ import {formatDate} from '../../utils/helpers';
 
 const PostsListItem = (props) => {
   const {post, index} = props;
-  console.log('post', post);
 
   return (
     <div>

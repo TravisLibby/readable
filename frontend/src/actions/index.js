@@ -5,6 +5,7 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 export const SORT_POSTS = 'SORT_POSTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const VOTE_ON_POST = 'VOTE_ON_POST';
+export const ADD_POST = 'ADD_POST';
 
 export const receivePosts = (posts) => {
   return {
@@ -56,3 +57,8 @@ export const voteOnPost = (post) => {
 export const fetchPostVote = (id, option) => dispatch => (
   ReadableAPI.voteOnPost(id, option).then(post => dispatch(voteOnPost(post)))
 );
+
+// export const addPost = (post) => {
+//   type: ADD_POST,
+//   post
+// };

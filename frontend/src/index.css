@@ -135,6 +135,10 @@ ul {
   cursor: pointer;
 }
 
+.post-form select {
+  margin-bottom: 20px;
+}
+
 .post-form input,
 .post-form textarea {
   margin-bottom: 20px;

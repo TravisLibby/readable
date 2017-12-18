@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Loading from './common/Loading';
 import PostsList from './common/PostsList';
 import Navigation from './Navigation';
 import {categories} from '../constants/categories';
 
 class ReduxPage extends Component {
   render() {
-    const {posts} = this.props;
+    const {posts, isLoading} = this.props;
 
     return (
       <div>
         <Navigation />
-        <PostsList posts={posts} />
+        {isLoading && posts.length === 0 ? <Loading /> : <PostsList posts={posts} />}
       </div>
     );
   }
@@ -19,7 +20,8 @@ class ReduxPage extends Component {
 
 const mapStateToProps = ({posts}) => {
   return {
-    posts: posts.filter(post => post.category === categories.REDUX)
+    posts: posts.items.filter(post => post.category === categories.REDUX),
+    isLoading: posts.isLoading
   };
 };
 

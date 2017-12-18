@@ -31,8 +31,6 @@ class PostDetails extends Component {
     const {showingComments} = this.state;
     const {post, comments} = this.props;
     const {id} = this.props.match.params;
-    console.log('post', post);
-    console.log('comments', comments);
 
     return (
       <div>
