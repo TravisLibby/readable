@@ -15,13 +15,17 @@ body {
   margin: 40px 0;
 }
 
-.add-post {
+.navigation li.add-post {
+  float: right;
+}
+
+li.add-post span {
   color: #3498db;
   cursor: pointer;
   margin-left: 40px;
 }
 
-.add-post:hover {
+li.add-post span:hover {
   color: #2980b9;
 }
 
@@ -135,6 +139,11 @@ ul {
   cursor: pointer;
 }
 
+.add-post-page {
+  width: 310px;
+  margin: 150px auto 0 auto;
+}
+
 .post-form select {
   margin-bottom: 20px;
 }
@@ -146,7 +155,7 @@ ul {
 }
 
 .post-form button[type="submit"] {
-  margin-left: 20px;
+  float: right;
 }
 
 .post-form .post-author,

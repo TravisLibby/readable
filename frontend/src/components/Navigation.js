@@ -23,9 +23,9 @@ class Navigation extends Component {
           <li>
             <NavLink to="/udacity">{capitalize(UDACITY)}</NavLink>
           </li>
-          <li>
+          <li className="add-post">
             <NavLink to="/add-post">
-              <span className="add-post"><FaPlusSquare className="add-post-icon" /> Add Post</span>
+              <span><FaPlusSquare className="add-post-icon" /> Add Post</span>
             </NavLink>
           </li>
         </ul>

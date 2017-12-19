@@ -39,7 +39,7 @@ class AddPostPage extends Component {
     const {REACT, REDUX, UDACITY} = categories;
 
     return (
-      <div>
+      <div className="add-post-page">
         <h3>Add Post</h3>
         <form className="post-form" name="addPostForm" onSubmit={(e) => handleSubmit(e)}>
           <select value={category} onChange={(e) => handleCategoryChange(e)}>
