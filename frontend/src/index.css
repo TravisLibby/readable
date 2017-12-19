@@ -5,12 +5,12 @@ body {
 }
 
 .container {
-  width: 960px;
+  width: 500px;
   margin: 0 auto;
 }
 
 .navigation {
-  width: 960px;
+  width: 500px;
   float: left;
   margin: 40px 0;
 }
@@ -76,8 +76,18 @@ ul {
   margin-bottom: 5px;
 }
 
+.posts-list p a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #3498db;
+}
+
+.posts-list p a:hover {
+  color: #2980b9;
+}
+
 .posts-list span, .post-details span {
-  font-size: 11px;
+  font-size: 12px;
   color: #95a5a6;
 }
 
@@ -140,7 +150,7 @@ ul {
 }
 
 .add-post-page {
-  width: 310px;
+  width: 500px;
   margin: 150px auto 0 auto;
 }
 
@@ -161,5 +171,5 @@ ul {
 .post-form .post-author,
 .post-form .post-title,
 .post-form .post-body {
-  width: 300px;
+  width: 490px;
 }

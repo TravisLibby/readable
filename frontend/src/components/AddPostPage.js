@@ -7,6 +7,7 @@ import uuid from 'uuid';
 
 class AddPostPage extends Component {
   state = {
+    postSubmitted: false,
     category: '',
     author: '',
     title: '',
@@ -20,7 +21,6 @@ class AddPostPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted!');
     this.props.dispatch(fetchAddPost({
       id: uuid.v4(),
       timestamp: Date.now(),
@@ -28,7 +28,7 @@ class AddPostPage extends Component {
       body: this.state.body,
       author: this.state.author,
       category: this.state.category
-    }));
+    })).then(() => console.log('Post submitted'));
   };
 
   cancel = () => this.props.history.goBack();

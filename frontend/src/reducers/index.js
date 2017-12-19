@@ -17,7 +17,7 @@ const posts = (state = {isLoading: true, items: []}, action) => {
     case ADD_POST:
       return {
         ...state,
-        items: [...state.items, action.post]
+        items: [...state.items, action.post].sort((a, b) => b.timestamp - a.timestamp)
       };
     case VOTE_ON_POST:
       const {post} = action;
