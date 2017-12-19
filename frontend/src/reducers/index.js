@@ -3,6 +3,7 @@ import {RECEIVE_POSTS,
         RECEIVE_POST,
         VOTE_ON_POST,
         SORT_POSTS,
+        ADD_POST,
         RECEIVE_COMMENTS} from '../actions';
 import {sortingOrder} from '../constants/sortingOrder';
 
@@ -12,6 +13,11 @@ const posts = (state = {isLoading: true, items: []}, action) => {
       return {
         isLoading: false,
         items: action.posts.sort((a, b) => b.timestamp - a.timestamp)
+      };
+    case ADD_POST:
+      return {
+        ...state,
+        items: [...state.items, action.post]
       };
     case VOTE_ON_POST:
       const {post} = action;

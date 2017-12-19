@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {categories} from '../constants/categories';
 import {capitalize} from '../utils/helpers';
+import {fetchAddPost} from '../actions';
+import uuid from 'uuid';
 
 class AddPostPage extends Component {
   state = {
@@ -19,6 +21,14 @@ class AddPostPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted!');
+    this.props.dispatch(fetchAddPost({
+      id: uuid.v4(),
+      timestamp: Date.now(),
+      title: this.state.title,
+      body: this.state.body,
+      author: this.state.author,
+      category: this.state.category
+    }));
   };
 
   cancel = () => this.props.history.goBack();
@@ -30,7 +40,7 @@ class AddPostPage extends Component {
 
     return (
       <div>
-        <h1>Add Post</h1>
+        <h3>Add Post</h3>
         <form className="post-form" name="addPostForm" onSubmit={(e) => handleSubmit(e)}>
           <select value={category} onChange={(e) => handleCategoryChange(e)}>
             <option value="" disabled>Select a Category</option>

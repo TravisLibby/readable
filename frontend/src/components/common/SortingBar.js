@@ -12,11 +12,7 @@ class SortingBar extends Component {
     const option = e.target.value;
     this.props.dispatch(sortPosts(option));
 
-    this.setState(() => {
-      return {
-        selectedFilter: option
-      };
-    })
+    this.setState({selectedFilter: option});
   };
 
   render() {

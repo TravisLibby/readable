@@ -58,7 +58,13 @@ export const fetchPostVote = (id, option) => dispatch => (
   ReadableAPI.voteOnPost(id, option).then(post => dispatch(voteOnPost(post)))
 );
 
-// export const addPost = (post) => {
-//   type: ADD_POST,
-//   post
-// };
+export const addPost = (post) => {
+  return {
+    type: ADD_POST,
+    post
+  }
+};
+
+export const fetchAddPost = (post) => dispatch => (
+  ReadableAPI.addPost(post).then(newPost => dispatch(addPost(newPost)))
+);
