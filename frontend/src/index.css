@@ -151,7 +151,7 @@ ul {
 
 .add-post-page {
   width: 500px;
-  margin: 150px auto 0 auto;
+  margin: 80px auto 0 auto;
 }
 
 .post-form select {
@@ -172,4 +172,15 @@ ul {
 .post-form .post-title,
 .post-form .post-body {
   width: 490px;
+}
+
+.back-to-posts {
+  font-size: 40px;
+  margin-bottom: 60px;
+  display: inline-block;
+  color: #3498db;
+}
+
+.back-to-posts:hover {
+  color: #2980b9;
 }

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import FaArrowCircleLeft from 'react-icons/lib/fa/arrow-circle-left';
 import {categories} from '../constants/categories';
 import {capitalize} from '../utils/helpers';
 import {fetchAddPost} from '../actions';
@@ -8,16 +10,26 @@ import uuid from 'uuid';
 class AddPostPage extends Component {
   state = {
     postSubmitted: false,
+    formInvalid: true,
     category: '',
     author: '',
     title: '',
     body: ''
   };
 
-  handleCategoryChange = (e) => this.setState({category: e.target.value});
-  handleTitleChange = (e) => this.setState({title: e.target.value});
-  handleAuthorChange = (e) => this.setState({author: e.target.value});
-  handleBodyChange = (e) => this.setState({body: e.target.value});
+  handleInputChange = (e) => {
+    const {name, value} = e.target;
+    this.setState(() => ({
+      [name]: value
+    }), () => this.handleFormValidation());
+  };
+
+  handleFormValidation = () => {
+    const {category, author, title, body} = this.state;
+    this.setState(() => ({
+      formInvalid: category.length === 0 || author.length === 0 || title.length === 0 || body.length === 0
+    }));
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -28,21 +40,32 @@ class AddPostPage extends Component {
       body: this.state.body,
       author: this.state.author,
       category: this.state.category
-    })).then(() => console.log('Post submitted'));
+    })).then(() => this.handleSuccess());
   };
 
-  cancel = () => this.props.history.goBack();
+  handleSuccess = () => {
+    alert('Your post was submitted!');
+    this.setState(() => ({
+      postSubmitted: false,
+      formInvalid: true,
+      category: '',
+      author: '',
+      title: '',
+      body: ''
+    }))
+  }
 
   render() {
-    const {category, author, title, body} = this.state;
-    const {handleCategoryChange, handleAuthorChange, handleTitleChange, handleBodyChange, handleSubmit} = this;
+    const {category, author, title, body, formInvalid} = this.state;
+    const {handleInputChange, handleSubmit, handleFormValidation} = this;
     const {REACT, REDUX, UDACITY} = categories;
 
     return (
       <div className="add-post-page">
+        <Link to="/" className="back-to-posts"><FaArrowCircleLeft /></Link>
         <h3>Add Post</h3>
         <form className="post-form" name="addPostForm" onSubmit={(e) => handleSubmit(e)}>
-          <select value={category} onChange={(e) => handleCategoryChange(e)}>
+          <select name="category" value={category} onChange={(e) => handleInputChange(e)}>
             <option value="" disabled>Select a Category</option>
             <option value={REACT}>{capitalize(REACT)}</option>
             <option value={REDUX}>{capitalize(REDUX)}</option>
@@ -52,23 +75,25 @@ class AddPostPage extends Component {
             type="text"
             placeholder="Your Name"
             className="post-author"
+            name="author"
             value={author}
-            onChange={(e) => handleAuthorChange(e)} /><br />
+            onChange={(e) => handleInputChange(e)} /><br />
           <input
             type="text"
             placeholder="Post Title"
             className="post-title"
+            name="title"
             value={title}
-            onChange={(e) => handleTitleChange(e)} /><br />
+            onChange={(e) => handleInputChange(e)} /><br />
           <textarea
             placeholder="Post Body"
             className="post-body"
+            name="body"
             value={body}
-            onChange={(e) => handleBodyChange(e)}>
+            onChange={(e) => handleInputChange(e)}>
           </textarea><br />
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={formInvalid}>Submit</button>
         </form>
-        <button onClick={() => this.cancel()}>Cancel</button>
       </div>
     );
   }

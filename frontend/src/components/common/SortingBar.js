@@ -11,7 +11,6 @@ class SortingBar extends Component {
   sortPosts = (e) => {
     const option = e.target.value;
     this.props.dispatch(sortPosts(option));
-
     this.setState({selectedFilter: option});
   };
 
