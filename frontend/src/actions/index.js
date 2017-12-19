@@ -6,6 +6,7 @@ export const SORT_POSTS = 'SORT_POSTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const VOTE_ON_POST = 'VOTE_ON_POST';
 export const ADD_POST = 'ADD_POST';
+export const DELETE_POST = 'DELETE_POST';
 
 export const receivePosts = (posts) => {
   return {
@@ -67,4 +68,15 @@ export const addPost = (post) => {
 
 export const fetchAddPost = (post) => dispatch => (
   ReadableAPI.addPost(post).then(newPost => dispatch(addPost(newPost)))
+);
+
+export const deletePost = (id) => {
+  return {
+    type: DELETE_POST,
+    id
+  };
+};
+
+export const fetchDeletePost = id => dispatch => (
+  ReadableAPI.deletePost(id).then(() => dispatch(deletePost(id)))
 );

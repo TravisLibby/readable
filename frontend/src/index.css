@@ -17,6 +17,7 @@ body {
 
 .navigation li.add-post {
   float: right;
+  margin-right: 0;
 }
 
 li.add-post span {
@@ -183,4 +184,12 @@ ul {
 
 .back-to-posts:hover {
   color: #2980b9;
+}
+
+.edit-delete {
+  float: right;
+}
+
+.post-details span.delete {
+  color: #e74c3c;
 }

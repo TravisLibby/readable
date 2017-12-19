@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Navigation from '../Navigation';
 import VotingBar from '../common/VotingBar';
-import {fetchPost, fetchComments} from '../../actions';
+import {fetchPost, fetchComments, fetchDeletePost} from '../../actions';
 import {formatDate} from '../../utils/helpers';
 
 class PostDetails extends Component {
@@ -20,6 +20,15 @@ class PostDetails extends Component {
     });
   };
 
+  deletePost = (id) => {
+    const shouldDelete = window.confirm('Are you sure you want to delete this post?');
+    if (shouldDelete) {
+      this.props.dispatch(fetchDeletePost(id));
+    } else {
+      return;
+    }  
+  };
+
   componentDidMount() {
     const {id} = this.props.match.params;
 
@@ -31,6 +40,7 @@ class PostDetails extends Component {
     const {showingComments} = this.state;
     const {post, comments} = this.props;
     const {id} = this.props.match.params;
+    const {deletePost} = this;
 
     return (
       <div>
@@ -38,7 +48,10 @@ class PostDetails extends Component {
         <div className="post-details">
           {post && post.id === id &&  (
             <div>
-              <h3>{post.title}</h3>
+              <h3 className="post-title">{post.title}</h3>
+              <div className="edit-delete">
+                <span>Edit</span> | <span className="delete" onClick={() => deletePost(post.id)}>Delete</span>
+              </div>
               <span>by {post.author} | {formatDate(post.timestamp)}</span>
               <VotingBar post={post} />
               <p>{post.body}</p>

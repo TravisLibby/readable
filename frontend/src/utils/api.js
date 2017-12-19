@@ -34,3 +34,12 @@ export const addPost = (post) => {
     body: JSON.stringify(post)
   }).then(res => res.json());
 };
+
+export const deletePost = (id) => {
+  return fetch(`${api}/posts/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers
+    }
+  })
+}
