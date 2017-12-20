@@ -4,8 +4,11 @@ import {RECEIVE_POSTS,
         VOTE_ON_POST,
         SORT_POSTS,
         ADD_POST,
+        EDIT_POST,
         DELETE_POST,
-        RECEIVE_COMMENTS} from '../actions';
+        RECEIVE_COMMENTS,
+        EDITING_POST,
+        CANCEL_EDITING_POST} from '../actions';
 import {sortingOrder} from '../constants/sortingOrder';
 
 const posts = (state = {isLoading: true, items: []}, action) => {
@@ -62,13 +65,30 @@ const posts = (state = {isLoading: true, items: []}, action) => {
   }
 };
 
-const post = (state = {}, action) => {
+const post = (state = {isEditing: false, item: {}}, action) => {
   switch (action.type) {
     case RECEIVE_POST:
-      return Object.assign({}, action.post);
+      return {
+        isEditing: false,
+        item: action.post
+      };
     case VOTE_ON_POST:
-      console.log('action.post', action.post);
       return Object.assign({}, action.post);
+    case EDIT_POST:
+      return {
+        ...state,
+        item: action.post
+      };
+    case EDITING_POST:
+      return {
+        ...state,
+        isEditing: true
+      };
+    case CANCEL_EDITING_POST:
+      return {
+        ...state,
+        isEditing: false
+      };
     default:
       return state;
   }

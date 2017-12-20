@@ -43,3 +43,14 @@ export const deletePost = (id) => {
     }
   })
 }
+
+export const editPost = (id, params) => {
+  return fetch(`${api}/posts/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  }).then(res => res.json());
+};
