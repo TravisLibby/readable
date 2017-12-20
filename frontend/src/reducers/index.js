@@ -73,7 +73,10 @@ const post = (state = {isEditing: false, item: {}}, action) => {
         item: action.post
       };
     case VOTE_ON_POST:
-      return Object.assign({}, action.post);
+      return {
+        ...state,
+        item: action.post
+      };
     case EDIT_POST:
       return {
         ...state,
