@@ -3,6 +3,7 @@ import {RECEIVE_POSTS,
         RETRIEVING_POST,
         RECEIVE_POST,
         VOTE_ON_POST,
+        VOTE_ON_COMMENT,
         SORT_POSTS,
         ADD_POST,
         EDIT_POST,
@@ -110,6 +111,16 @@ const comments = (state = {isLoading: true, items: []}, action) => {
       return {
         isLoading: false,
         items: action.comments
+      };
+    case VOTE_ON_COMMENT:
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id === action.comment.id) {
+            item = action.comment;
+          }
+          return item;
+        })
       };
     default:
       return state;

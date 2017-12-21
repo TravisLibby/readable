@@ -54,3 +54,14 @@ export const editPost = (id, params) => {
     body: JSON.stringify(params)
   }).then(res => res.json());
 };
+
+export const voteOnComment = (id, option) => {
+  return fetch(`${api}/comments/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({option})
+  }).then(res => res.json());
+};

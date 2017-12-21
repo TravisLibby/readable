@@ -66,7 +66,7 @@ class PostDetails extends Component {
               <span className="edit" onClick={() => setToEditing()}>Edit</span> | <span className="delete" onClick={() => deletePost(post.id)}>Delete</span>
             </div>
             <span>by {author} | {formatDate(timestamp)}</span>
-            <VotingBar post={post} />
+            <VotingBar type={"post"} item={post} />
             <p>{body}</p>
             {post.commentCount > 0 && (
               <div className="comments">

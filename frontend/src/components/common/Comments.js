@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import VotingBar from './VotingBar';
 import {formatDate} from '../../utils/helpers';
 
 class Comments extends Component {
   render() {
     const comments = this.props.comments.items;
-    console.log(this.props);
     return (
       <ul>
         {comments.map((comment) => {
@@ -13,6 +13,7 @@ class Comments extends Component {
             <li key={comment.id}>
               <span>by {comment.author} | {formatDate(comment.timestamp)}</span>
               <p>{comment.body}</p>
+              <VotingBar type='comment' item={comment} />
             </li>
           );
         })}
