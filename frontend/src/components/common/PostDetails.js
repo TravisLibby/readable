@@ -75,7 +75,7 @@ class PostDetails extends Component {
             <VotingBar post={post} />
             <p>{body}</p>
             <div className="comments">
-              <h4 className="comments-header">Comments</h4>
+              <h4 className="comments-header">Comments ({post.commentCount})</h4>
               <a
                 href="#"
                 className="toggle-comments"
