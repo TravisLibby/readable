@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Navigation from '../Navigation';
+import Loader from '../common/Loader';
 import VotingBar from '../common/VotingBar';
 import EditPostForm from '../common/EditPostForm';
 import {fetchPost, fetchComments, fetchDeletePost, editingPost, cancelEditingPost} from '../../actions';
@@ -8,18 +9,15 @@ import {formatDate} from '../../utils/helpers';
 
 class PostDetails extends Component {
   state = {
-    showingComments: false,
-    isLoading: true
+    showingComments: false
   };
 
   toggleComments = (e) => {
     e.preventDefault();
-
-    this.setState(() => {
-      return {
-        showingComments: !this.state.showingComments
-      };
-    });
+    this.setState({showingComments: !this.state.showingComments});
+    if (this.props.comments.items.length === 0) {
+      this.props.dispatch(fetchComments(this.props.post.item.id));
+    }
   };
 
   setToEditing = () => {
@@ -41,23 +39,15 @@ class PostDetails extends Component {
 
   componentDidMount() {
     const {id} = this.props.match.params;
-
-    this.props.dispatch(fetchPost(id)).then(() => {
-      this.setState(() => {
-        return {
-          isLoading: false
-        };
-      });
-    });
-
-    this.props.dispatch(fetchComments(id));
+    this.props.dispatch(fetchPost(id));
   };
 
   render() {
-    const {showingComments, isLoading} = this.state;
-    const {comments} = this.props;
-    const {isEditing} = this.props.post;
     const post = this.props.post.item;
+    const comments = this.props.comments.items;
+    const postLoading = this.props.post.isLoading;
+    const {showingComments} = this.state;
+    const {isEditing} = this.props.post;
     const {id} = this.props.match.params;
     const {deletePost, setToEditing, setToNotEditing} = this;
     const {author, title, body, timestamp} = this.props.post.item;
@@ -65,7 +55,10 @@ class PostDetails extends Component {
     return (
       <div>
         <Navigation />
-        {(!isLoading && !isEditing) && (
+        {postLoading && (
+          <Loader />
+        )}
+        {(!postLoading && !isEditing && post.id === id) && (
           <div className="post-details">
             <h3 className="post-title">{title}</h3>
             <div className="edit-delete">
@@ -74,31 +67,33 @@ class PostDetails extends Component {
             <span>by {author} | {formatDate(timestamp)}</span>
             <VotingBar post={post} />
             <p>{body}</p>
-            <div className="comments">
-              <h4 className="comments-header">Comments ({post.commentCount})</h4>
-              <a
-                href="#"
-                className="toggle-comments"
-                onClick={(e) => this.toggleComments(e)}>
-                ({showingComments ? 'Hide' : 'Show'})
-              </a>
-              {showingComments && (
-                <ul>
-                  {comments.map((comment) => {
-                    return (
-                      <li key={comment.id}>
-                        <span>by {comment.author} | {formatDate(comment.timestamp)}</span>
-                        <p>{comment.body}</p>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
+            {post.commentCount > 0 && (
+              <div className="comments">
+                <h4 className="comments-header">Comments ({post.commentCount})</h4>
+                <a
+                  href="#"
+                  className="toggle-comments"
+                  onClick={(e) => this.toggleComments(e)}>
+                  {showingComments ? 'Hide' : 'Show'}
+                </a>
+                {showingComments && (
+                  <ul>
+                    {comments.map((comment) => {
+                      return (
+                        <li key={comment.id}>
+                          <span>by {comment.author} | {formatDate(comment.timestamp)}</span>
+                          <p>{comment.body}</p>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </div>
+            )}
           </div>
         )}
         <div>
-          {!isLoading && isEditing && (
+          {!postLoading && isEditing && (
             <div>
               <h3 className="edit-header">Edit Post</h3>
               <EditPostForm />

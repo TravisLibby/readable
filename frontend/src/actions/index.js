@@ -1,6 +1,7 @@
 import * as ReadableAPI from '../utils/api';
 
 export const RECEIVE_POSTS = 'RECEIVE_ALL_POSTS';
+export const RETRIEVING_POST = 'RETRIEVING_POST';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const SORT_POSTS = 'SORT_POSTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
@@ -22,6 +23,12 @@ export const fetchPosts = () => dispatch => (
   ReadableAPI.getPosts().then(posts => dispatch(receivePosts(posts)))
 );
 
+export const retrievingPost = () => {
+  return {
+    type: RETRIEVING_POST
+  };
+};
+
 export const receivePost = (post) => {
   return {
     type: RECEIVE_POST,
@@ -29,9 +36,10 @@ export const receivePost = (post) => {
   };
 };
 
-export const fetchPost = id => dispatch => (
-  ReadableAPI.getPostById(id).then(post => dispatch(receivePost(post)))
-);
+export const fetchPost = id => dispatch => {
+  dispatch(retrievingPost());
+  return ReadableAPI.getPostById(id).then(post => dispatch(receivePost(post)));
+};
 
 export const sortPosts = (option) => {
   return {

@@ -214,3 +214,8 @@ ul {
 .post-details h3.edit-header {
   margin-bottom: 20px;
 }
+
+.loader {
+  margin: 0 auto;
+  width: 50px;
+}

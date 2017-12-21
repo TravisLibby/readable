@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import {RECEIVE_POSTS,
+        RETRIEVING_POST,
         RECEIVE_POST,
         VOTE_ON_POST,
         SORT_POSTS,
@@ -65,10 +66,16 @@ const posts = (state = {isLoading: true, items: []}, action) => {
   }
 };
 
-const post = (state = {isEditing: false, item: {}}, action) => {
+const post = (state = {isLoading: true, isEditing: false, item: {}}, action) => {
   switch (action.type) {
+    case RETRIEVING_POST:
+      return {
+        ...state,
+        isLoading: true
+      };
     case RECEIVE_POST:
       return {
+        isLoading: false,
         isEditing: false,
         item: action.post
       };
@@ -97,10 +104,13 @@ const post = (state = {isEditing: false, item: {}}, action) => {
   }
 };
 
-const comments = (state = [], action) => {
+const comments = (state = {isLoading: true, items: []}, action) => {
   switch (action.type) {
     case RECEIVE_COMMENTS:
-      return action.comments;
+      return {
+        isLoading: false,
+        items: action.comments
+      };
     default:
       return state;
   }

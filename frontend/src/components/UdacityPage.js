@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Loading from './common/Loading';
+import Loader from './common/Loader';
 import PostsList from './common/PostsList';
 import Navigation from './Navigation';
 import {categories} from '../constants/categories';
@@ -12,7 +12,7 @@ class UdacityPage extends Component {
     return (
       <div>
         <Navigation />
-        {isLoading && posts.length === 0 ? <Loading /> : <PostsList posts={posts} />}
+        {isLoading && posts.length === 0 ? <Loader /> : <PostsList posts={posts} />}
       </div>
     );
   }
