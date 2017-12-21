@@ -4,6 +4,7 @@ import Navigation from '../Navigation';
 import Loader from '../common/Loader';
 import VotingBar from '../common/VotingBar';
 import EditPostForm from '../common/EditPostForm';
+import Comments from '../common/Comments';
 import {fetchPost, fetchComments, fetchDeletePost, editingPost, cancelEditingPost} from '../../actions';
 import {formatDate} from '../../utils/helpers';
 
@@ -77,16 +78,7 @@ class PostDetails extends Component {
                   {showingComments ? 'Hide' : 'Show'}
                 </a>
                 {showingComments && (
-                  <ul>
-                    {comments.map((comment) => {
-                      return (
-                        <li key={comment.id}>
-                          <span>by {comment.author} | {formatDate(comment.timestamp)}</span>
-                          <p>{comment.body}</p>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <Comments />
                 )}
               </div>
             )}
