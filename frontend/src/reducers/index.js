@@ -9,6 +9,8 @@ import {RECEIVE_POSTS,
         EDIT_POST,
         DELETE_POST,
         RECEIVE_COMMENTS,
+        ADD_COMMENT,
+        CLEAR_COMMENTS,
         EDITING_POST,
         CANCEL_EDITING_POST} from '../actions';
 import {sortingOrder} from '../constants/sortingOrder';
@@ -108,9 +110,23 @@ const post = (state = {isLoading: true, isEditing: false, item: {}}, action) => 
 const comments = (state = {isLoading: true, items: []}, action) => {
   switch (action.type) {
     case RECEIVE_COMMENTS:
+    console.log(action.comments);
       return {
         isLoading: false,
         items: action.comments
+      };
+    case CLEAR_COMMENTS:
+      return {
+        isLoading: false,
+        items: []
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        items: [
+          ...state.items,
+          action.comment
+        ]
       };
     case VOTE_ON_COMMENT:
       return {

@@ -14,8 +14,10 @@ class VotingBar extends Component {
     switch (this.props.type) {
       case ITEM_TYPES.POST:
         this.props.dispatch(fetchPostVote(id, option));
+        break;
       case ITEM_TYPES.COMMENT:
         this.props.dispatch(fetchCommentVote(id, option));
+        break;
       default:
         return;
     }

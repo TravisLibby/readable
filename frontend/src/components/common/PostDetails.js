@@ -6,7 +6,7 @@ import VotingBar from '../common/VotingBar';
 import EditPostForm from '../common/EditPostForm';
 import Comments from '../common/Comments';
 import AddCommentForm from '../common/AddCommentForm';
-import {fetchPost, fetchComments, fetchDeletePost, editingPost, cancelEditingPost} from '../../actions';
+import {fetchPost, fetchComments, clearComments, fetchDeletePost, editingPost, cancelEditingPost} from '../../actions';
 import {formatDate} from '../../utils/helpers';
 
 class PostDetails extends Component {
@@ -17,9 +17,20 @@ class PostDetails extends Component {
   toggleComments = (e) => {
     e.preventDefault();
     this.setState({showingComments: !this.state.showingComments});
-    if (this.props.comments.items.length === 0) {
+    if (this.props.post.item.commentCount !== 0) {
       this.props.dispatch(fetchComments(this.props.post.item.id));
+    } else {
+      this.props.dispatch(clearComments());
     }
+  };
+
+  getCommentLinkText = () => {
+    const post = this.props.post.item;
+    const {showingComments} = this.state;
+    if (post.commentCount > 0) {
+      return showingComments ? 'Hide' : 'Show';
+    }
+    return showingComments ? 'Cancel' : 'Add First Comment';
   };
 
   setToEditing = () => {
@@ -51,7 +62,7 @@ class PostDetails extends Component {
     const {showingComments} = this.state;
     const {isEditing} = this.props.post;
     const {id} = this.props.match.params;
-    const {deletePost, setToEditing, setToNotEditing} = this;
+    const {deletePost, setToEditing, setToNotEditing, getCommentLinkText} = this;
     const {author, title, body, timestamp} = this.props.post.item;
 
     return (
@@ -69,23 +80,21 @@ class PostDetails extends Component {
             <span>by {author} | {formatDate(timestamp)}</span>
             <VotingBar type={"post"} item={post} />
             <p>{body}</p>
-            {post.commentCount > 0 && (
               <div className="comments">
                 <h4 className="comments-header">Comments ({post.commentCount})</h4>
                 <a
                   href="#"
                   className="toggle-comments"
                   onClick={(e) => this.toggleComments(e)}>
-                  {showingComments ? 'Hide' : 'Show'}
+                  {getCommentLinkText()}
                 </a>
                 {showingComments && (
                   <div>
                     <Comments />
-                    <AddCommentForm />
+                    <AddCommentForm post={post} />
                   </div>
                 )}
               </div>
-            )}
           </div>
         )}
         <div>
