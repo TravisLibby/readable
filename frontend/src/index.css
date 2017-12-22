@@ -160,7 +160,9 @@ ul {
 }
 
 .post-form input,
-.post-form textarea {
+.post-form textarea,
+.add-comment-form input,
+.add-comment-form textarea {
   margin-bottom: 20px;
   padding: 10px 5px;
 }
@@ -218,4 +220,13 @@ ul {
 .loader {
   margin: 0 auto;
   width: 50px;
+}
+
+.add-comment-form input,
+.add-comment-form textarea {
+  width : 490px;
+}
+
+.add-comment-form button {
+  float: right;
 }

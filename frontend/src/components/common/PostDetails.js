@@ -5,6 +5,7 @@ import Loader from '../common/Loader';
 import VotingBar from '../common/VotingBar';
 import EditPostForm from '../common/EditPostForm';
 import Comments from '../common/Comments';
+import AddCommentForm from '../common/AddCommentForm';
 import {fetchPost, fetchComments, fetchDeletePost, editingPost, cancelEditingPost} from '../../actions';
 import {formatDate} from '../../utils/helpers';
 
@@ -78,7 +79,10 @@ class PostDetails extends Component {
                   {showingComments ? 'Hide' : 'Show'}
                 </a>
                 {showingComments && (
-                  <Comments />
+                  <div>
+                    <Comments />
+                    <AddCommentForm />
+                  </div>
                 )}
               </div>
             )}
