@@ -57,7 +57,6 @@ class PostDetails extends Component {
 
   render() {
     const post = this.props.post.item;
-    const comments = this.props.comments.items;
     const postLoading = this.props.post.isLoading;
     const {showingComments} = this.state;
     const {isEditing} = this.props.post;
@@ -75,7 +74,8 @@ class PostDetails extends Component {
           <div className="post-details">
             <h3 className="post-title">{title}</h3>
             <div className="edit-delete">
-              <span className="edit" onClick={() => setToEditing()}>Edit</span> | <span className="delete" onClick={() => deletePost(post.id)}>Delete</span>
+              <span className="edit" onClick={() => setToEditing()}>Edit</span> |&nbsp;
+              <span className="delete" onClick={() => deletePost(post.id)}>Delete</span>
             </div>
             <span>by {author} | {formatDate(timestamp)}</span>
             <VotingBar type={"post"} item={post} />

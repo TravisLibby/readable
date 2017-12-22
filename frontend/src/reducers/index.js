@@ -11,6 +11,7 @@ import {RECEIVE_POSTS,
         RECEIVE_COMMENTS,
         ADD_COMMENT,
         CLEAR_COMMENTS,
+        DELETE_COMMENT,
         EDITING_POST,
         CANCEL_EDITING_POST} from '../actions';
 import {sortingOrder} from '../constants/sortingOrder';
@@ -137,6 +138,11 @@ const comments = (state = {isLoading: true, items: []}, action) => {
           }
           return item;
         })
+      };
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== action.id)
       };
     default:
       return state;

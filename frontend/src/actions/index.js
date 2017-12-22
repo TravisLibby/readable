@@ -9,6 +9,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 export const VOTE_ON_POST = 'VOTE_ON_POST';
 export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const EDITING_POST = 'EDITING_POST';
@@ -144,4 +145,15 @@ export const clearComments = () => {
   return {
     type: CLEAR_COMMENTS
   };
+};
+
+export const deleteComment = (id) => {
+  return {
+    type: DELETE_COMMENT,
+    id
+  };
+};
+
+export const fetchDeleteComment = (id) => dispatch => {
+  return ReadableAPI.deleteComment(id).then(() => dispatch(deleteComment(id)));
 };

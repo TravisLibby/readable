@@ -41,7 +41,7 @@ export const deletePost = (id) => {
     headers: {
       ...headers
     }
-  })
+  });
 }
 
 export const editPost = (id, params) => {
@@ -76,3 +76,12 @@ export const addComment = (comment) => {
     body: JSON.stringify(comment)
   }).then(res => res.json());
 };
+
+export const deleteComment = (id) => {
+  return fetch(`${api}/comments/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers
+    }
+  });
+}
