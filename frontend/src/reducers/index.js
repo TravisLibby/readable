@@ -103,6 +103,15 @@ const post = (state = {isLoading: true, isEditing: false, item: {}}, action) => 
         ...state,
         isEditing: false
       };
+    case ADD_COMMENT:
+      console.log({...state.item});
+      return {
+        ...state,
+        item: {
+          ...state.item,
+          commentCount: state.item.commentCount += 1
+        }
+      };
     default:
       return state;
   }
@@ -111,7 +120,6 @@ const post = (state = {isLoading: true, isEditing: false, item: {}}, action) => 
 const comments = (state = {isLoading: true, items: []}, action) => {
   switch (action.type) {
     case RECEIVE_COMMENTS:
-    console.log(action.comments);
       return {
         isLoading: false,
         items: action.comments
