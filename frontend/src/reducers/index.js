@@ -104,7 +104,6 @@ const post = (state = {isLoading: true, isEditing: false, item: {}}, action) => 
         isEditing: false
       };
     case ADD_COMMENT:
-      console.log({...state.item});
       return {
         ...state,
         item: {
@@ -112,6 +111,14 @@ const post = (state = {isLoading: true, isEditing: false, item: {}}, action) => 
           commentCount: state.item.commentCount += 1
         }
       };
+      case DELETE_COMMENT:
+        return {
+          ...state,
+          item: {
+            ...state.item,
+            commentCount: state.item.commentCount -= 1
+          }
+        };
     default:
       return state;
   }
