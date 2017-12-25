@@ -65,6 +65,26 @@ const posts = (state = {isLoading: true, items: []}, action) => {
             return b.voteScore - a.voteScore;
         }
       })};
+    case ADD_COMMENT:
+      return {
+        ...state,
+        items: state.items.map((item) => {
+          if (item.id === action.comment.parentId) {
+            item.commentCount += 1;
+          }
+          return item;
+        })
+      };
+      case DELETE_COMMENT:
+        return {
+          ...state,
+          items: state.items.map((item) => {
+            if (item.id === action.comment.parentId) {
+              item.commentCount -= 1;
+            }
+            return item;
+          })
+        };
     default:
       return state;
   }
@@ -111,14 +131,14 @@ const post = (state = {isLoading: true, isEditing: false, item: {}}, action) => 
           commentCount: state.item.commentCount += 1
         }
       };
-      case DELETE_COMMENT:
-        return {
-          ...state,
-          item: {
-            ...state.item,
-            commentCount: state.item.commentCount -= 1
-          }
-        };
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        item: {
+          ...state.item,
+          commentCount: state.item.commentCount -= 1
+        }
+      };
     default:
       return state;
   }
@@ -157,7 +177,7 @@ const comments = (state = {isLoading: true, items: []}, action) => {
     case DELETE_COMMENT:
       return {
         ...state,
-        items: state.items.filter(item => item.id !== action.id)
+        items: state.items.filter(item => item.id !== action.comment.id)
       };
     default:
       return state;

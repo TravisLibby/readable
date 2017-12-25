@@ -147,13 +147,13 @@ export const clearComments = () => {
   };
 };
 
-export const deleteComment = (id) => {
+export const deleteComment = (comment) => {
   return {
     type: DELETE_COMMENT,
-    id
+    comment
   };
 };
 
-export const fetchDeleteComment = (id) => dispatch => {
-  return ReadableAPI.deleteComment(id).then(() => dispatch(deleteComment(id)));
+export const fetchDeleteComment = (comment) => dispatch => {
+  return ReadableAPI.deleteComment(comment.id).then(() => dispatch(deleteComment(comment)));
 };

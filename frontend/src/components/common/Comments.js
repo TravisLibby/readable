@@ -5,8 +5,8 @@ import {fetchDeleteComment} from '../../actions';
 import {formatDate} from '../../utils/helpers';
 
 class Comments extends Component {
-  deleteComment = (id) => {
-    this.props.dispatch(fetchDeleteComment(id));
+  deleteComment = (comment) => {
+    this.props.dispatch(fetchDeleteComment(comment));
   };
 
   render() {
@@ -23,7 +23,7 @@ class Comments extends Component {
                 <span>by {comment.author} | {formatDate(comment.timestamp)}</span>
                 <div className="edit-delete">
                   <span className="edit">Edit</span> |&nbsp;
-                  <span className="delete" onClick={() => deleteComment(comment.id)}>Delete</span>
+                  <span className="delete" onClick={() => deleteComment(comment)}>Delete</span>
                 </div>
                 <p>{comment.body}</p>
                 <VotingBar type='comment' item={comment} />
