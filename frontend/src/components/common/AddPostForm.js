@@ -34,9 +34,9 @@ class AddPostForm extends Component {
     this.props.dispatch(fetchAddPost({
       id: uuid.v4(),
       timestamp: Date.now(),
-      title: this.state.title,
-      body: this.state.body,
-      author: this.state.author,
+      title: this.state.title.trim(),
+      body: this.state.body.trim(),
+      author: this.state.author.trim(),
       category: this.state.category
     })).then(() => this.handleSuccess());
   };

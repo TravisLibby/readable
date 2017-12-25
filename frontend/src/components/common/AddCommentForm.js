@@ -33,8 +33,8 @@ class AddCommentForm extends Component {
     this.props.dispatch(fetchAddComment({
       id: uuid.v4(),
       timestamp: Date.now(),
-      body: this.state.body,
-      author: this.state.author,
+      body: this.state.body.trim(),
+      author: this.state.author.trim(),
       parentId: this.props.post.id
     })).then(() => {
       this.setState(() => {

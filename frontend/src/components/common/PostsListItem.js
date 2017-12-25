@@ -9,7 +9,10 @@ const PostsListItem = (props) => {
     <div>
       <p>{index + 1}. <Link to={`/posts/${post.id}`}>{post.title}</Link></p>
       <span>
-        {post.voteScore} pts | by {post.author} | {formatDate(post.timestamp)} | {post.commentCount} comments
+        {post.voteScore} pts |&nbsp;
+        by {post.author} |&nbsp;
+        {formatDate(post.timestamp)} |&nbsp;
+        {post.commentCount} {post.commentCount > 1 ? "comments" : "comment"}
       </span>
     </div>
   );
