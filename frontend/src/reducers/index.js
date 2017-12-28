@@ -12,6 +12,9 @@ import {RECEIVE_POSTS,
         ADD_COMMENT,
         CLEAR_COMMENTS,
         DELETE_COMMENT,
+        EDITING_COMMENT,
+        CANCEL_EDITING_COMMENT,
+        EDIT_COMMENT,
         EDITING_POST,
         CANCEL_EDITING_POST} from '../actions';
 import {sortingOrder} from '../constants/sortingOrder';
@@ -144,11 +147,12 @@ const post = (state = {isLoading: true, isEditing: false, item: {}}, action) => 
   }
 };
 
-const comments = (state = {isLoading: true, items: []}, action) => {
+const comments = (state = {isLoading: true, commentEditing: null, items: []}, action) => {
   switch (action.type) {
     case RECEIVE_COMMENTS:
       return {
         isLoading: false,
+        commentEditing: null,
         items: action.comments
       };
     case CLEAR_COMMENTS:
@@ -179,6 +183,27 @@ const comments = (state = {isLoading: true, items: []}, action) => {
         ...state,
         items: state.items.filter(item => item.id !== action.comment.id)
       };
+    case EDITING_COMMENT:
+      return {
+        ...state,
+        commentEditing: action.id
+      };
+    case CANCEL_EDITING_COMMENT:
+      return {
+        ...state,
+        commentEditing: null
+      };
+    case EDIT_COMMENT:
+      return {
+        ...state,
+        commentEditing: null,
+        items: state.items.map((item) => {
+          if (item.id === action.comment.id) {
+            return action.comment;
+          }
+          return item;
+        })
+      }
     default:
       return state;
   }

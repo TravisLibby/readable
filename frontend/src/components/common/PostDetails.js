@@ -60,6 +60,7 @@ class PostDetails extends Component {
     const postLoading = this.props.post.isLoading;
     const {showingComments} = this.state;
     const {isEditing} = this.props.post;
+    const commentsLoading = this.props.comments.isLoading;
     const {id} = this.props.match.params;
     const {deletePost, setToEditing, setToNotEditing, getCommentLinkText} = this;
     const {author, title, body, timestamp} = this.props.post.item;
@@ -88,7 +89,7 @@ class PostDetails extends Component {
                   onClick={(e) => this.toggleComments(e)}>
                   {getCommentLinkText()}
                 </a>
-                {showingComments && (
+                {(showingComments && !commentsLoading) && (
                   <div>
                     <Comments />
                     <AddCommentForm post={post} />

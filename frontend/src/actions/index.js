@@ -10,6 +10,9 @@ export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 export const VOTE_ON_POST = 'VOTE_ON_POST';
 export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const EDITING_COMMENT = 'EDITING_COMMENT';
+export const CANCEL_EDITING_COMMENT = 'CANCEL_EDITING_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const EDITING_POST = 'EDITING_POST';
@@ -156,4 +159,28 @@ export const deleteComment = (comment) => {
 
 export const fetchDeleteComment = (comment) => dispatch => {
   return ReadableAPI.deleteComment(comment.id).then(() => dispatch(deleteComment(comment)));
+};
+
+export const editingComment = (id) => {
+  return {
+    type: EDITING_COMMENT,
+    id
+  };
+};
+
+export const cancelEditingComment = () => {
+  return {
+    type: CANCEL_EDITING_COMMENT
+  };
+};
+
+export const editComment = (comment) => {
+  return {
+    type: EDIT_COMMENT,
+    comment
+  };
+};
+
+export const fetchEditComment = (id, params) => dispatch => {
+  return ReadableAPI.editComment(id, params).then(comment => dispatch(editComment(comment)));
 };

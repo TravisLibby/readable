@@ -162,7 +162,9 @@ ul {
 .post-form input,
 .post-form textarea,
 .add-comment-form input,
-.add-comment-form textarea {
+.add-comment-form textarea,
+.edit-comment-form input,
+.edit-comment-form textarea {
   margin-bottom: 20px;
   padding: 10px 5px;
 }
@@ -228,5 +230,20 @@ ul {
 }
 
 .add-comment-form button {
+  float: right;
+}
+
+.edit-comment-form {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.edit-comment-form input,
+.edit-comment-form textarea {
+  width: 98%;
+}
+
+.edit-comment-form button[type="submit"] {
   float: right;
 }

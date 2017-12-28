@@ -84,4 +84,15 @@ export const deleteComment = (id) => {
       ...headers
     }
   });
-}
+};
+
+export const editComment = (id, params) => {
+  return fetch(`${api}/comments/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  }).then(res => res.json());
+};
