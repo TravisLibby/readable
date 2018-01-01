@@ -83,12 +83,12 @@ class PostDetails extends Component {
             <p>{body}</p>
               <div className="comments">
                 <h4 className="comments-header">Comments ({post.commentCount})</h4>
-                <a
+                <span
                   href="#"
                   className="toggle-comments"
                   onClick={(e) => this.toggleComments(e)}>
                   {getCommentLinkText()}
-                </a>
+                </span>
                 {(showingComments && !commentsLoading) && (
                   <div>
                     <Comments />

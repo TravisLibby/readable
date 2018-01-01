@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {cancelEditingComment, editComment, fetchEditComment} from '../../actions';
+import {cancelEditingComment, fetchEditComment} from '../../actions';
 
 class EditCommentForm extends Component {
   state = {
