@@ -10,6 +10,11 @@ class AddCommentForm extends Component {
     body: ''
   };
 
+  /**
+   * Handles updating the state of the form inputs on change.
+   *
+   * @param  {Object} e The click event.
+   */
   handleInputChange = (e) => {
     const {name, value} = e.target;
     this.setState(() => {
@@ -19,6 +24,9 @@ class AddCommentForm extends Component {
     }, () => this.handleValidation());
   };
 
+  /**
+   * Handles the form validation.
+   */
   handleValidation = () => {
     const {author, body} = this.state;
     this.setState(() => {
@@ -28,6 +36,11 @@ class AddCommentForm extends Component {
     });
   };
 
+  /**
+   * Submits the comment.
+   *
+   * @param  {Object} e The click event.
+   */
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.dispatch(fetchAddComment({

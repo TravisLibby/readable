@@ -8,6 +8,11 @@ class EditCommentForm extends Component {
     body: this.props.comment.body
   };
 
+  /**
+   * Handles updating the state of the form inputs on change.
+   *
+   * @param  {Object} e The click event.
+   */
   handleInputChange = (e) => {
     const {value, name} = e.target;
 
@@ -18,10 +23,16 @@ class EditCommentForm extends Component {
     }, () => this.handleFormValidation());
   };
 
+  /**
+   * Cancels editing the comment.
+   */
   cancelEditingComment = () => {
     this.props.dispatch(cancelEditingComment());
   };
 
+  /**
+   * Handles the form validation.
+   */
   handleFormValidation = () => {
     this.setState(() => {
       return {
@@ -30,6 +41,11 @@ class EditCommentForm extends Component {
     });
   };
 
+  /**
+   * Submits the edited comment.
+   *
+   * @param  {Object} e The click event.
+   */
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.dispatch(fetchEditComment(this.props.comment.id, {

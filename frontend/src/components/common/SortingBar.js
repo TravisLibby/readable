@@ -8,6 +8,12 @@ class SortingBar extends Component {
     selectedFilter: sortingOrder.NEWEST_FIRST
   }
 
+
+  /**
+   * Sorts the post based on the selected option.
+   *
+   * @param  {Object} e The click event.
+   */
   sortPosts = (e) => {
     const option = e.target.value;
     this.props.dispatch(sortPosts(option));

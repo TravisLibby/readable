@@ -14,8 +14,10 @@ class PostDetails extends Component {
     showingComments: false
   };
 
-  toggleComments = (e) => {
-    e.preventDefault();
+  /**
+   * Fetches or clears the comments.
+   */
+  toggleComments = () => {
     this.setState({showingComments: !this.state.showingComments});
     if (this.props.post.item.commentCount !== 0) {
       this.props.dispatch(fetchComments(this.props.post.item.id));
@@ -24,6 +26,11 @@ class PostDetails extends Component {
     }
   };
 
+  /**
+   * Gets the text label for the toggle comment button.
+   *
+   * @return {String} The label for the toggle comment button.
+   */
   getCommentLinkText = () => {
     const post = this.props.post.item;
     const {showingComments} = this.state;
@@ -33,14 +40,26 @@ class PostDetails extends Component {
     return showingComments ? 'Cancel' : 'Add First Comment';
   };
 
+  /**
+   * Marks the post as in editing mode.
+   */
   setToEditing = () => {
     this.props.dispatch(editingPost());
   };
 
+  /**
+   * Marks the post as in viewing mode.
+   */
   setToNotEditing = () => {
     this.props.dispatch(cancelEditingPost());
   };
 
+  /**
+   * Deletes the post with the given id.
+   *
+   * @param  {Number} id The id of the post.
+   * @return {void}
+   */
   deletePost = (id) => {
     const shouldDelete = window.confirm('Are you sure you want to delete this post?');
     if (shouldDelete) {
@@ -84,9 +103,8 @@ class PostDetails extends Component {
               <div className="comments">
                 <h4 className="comments-header">Comments ({post.commentCount})</h4>
                 <span
-                  href="#"
                   className="toggle-comments"
-                  onClick={(e) => this.toggleComments(e)}>
+                  onClick={() => this.toggleComments()}>
                   {getCommentLinkText()}
                 </span>
                 {(showingComments && !commentsLoading) && (

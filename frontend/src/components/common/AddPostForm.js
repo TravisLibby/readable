@@ -15,6 +15,11 @@ class AddPostForm extends Component {
     body: ''
   };
 
+  /**
+   * Handles updating the state of the form inputs on change.
+   *
+   * @param  {Object} e The click event.
+   */
   handleInputChange = (e) => {
     const {name, value} = e.target;
     this.setState(() => ({
@@ -22,6 +27,9 @@ class AddPostForm extends Component {
     }), () => this.handleFormValidation());
   };
 
+  /**
+   * Handles the form validation.
+   */
   handleFormValidation = () => {
     const {category, author, title, body} = this.state;
     this.setState(() => ({
@@ -29,6 +37,11 @@ class AddPostForm extends Component {
     }));
   };
 
+  /**
+   * Submits the post.
+   *
+   * @param  {Object} e The click event.
+   */
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.dispatch(fetchAddPost({
@@ -41,6 +54,9 @@ class AddPostForm extends Component {
     })).then(() => this.handleSuccess());
   };
 
+  /**
+   * Alerts the user upon successful post submission.
+   */
   handleSuccess = () => {
     alert('Your post was submitted!');
     this.setState(() => ({

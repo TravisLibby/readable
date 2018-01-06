@@ -6,10 +6,20 @@ import {fetchDeleteComment, editingComment} from '../../actions';
 import {formatDate} from '../../utils/helpers';
 
 class Comments extends Component {
+  /**
+   * Deletes the given comment.
+   *
+   * @param  {Object} comment The comment to delete.
+   */
   deleteComment = (comment) => {
     this.props.dispatch(fetchDeleteComment(comment));
   };
 
+  /**
+   * Marks a given comment as in editing mode.
+   *
+   * @param {Number} id The id of the comment currently in edit mode.
+   */
   setAsEditing = id => this.props.dispatch(editingComment(id));
 
   render() {
