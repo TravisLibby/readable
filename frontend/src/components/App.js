@@ -8,6 +8,7 @@ import ReduxPage from './ReduxPage';
 import UdacityPage from './UdacityPage';
 import PostDetails from './common/PostDetails';
 import AddPostPage from './AddPostPage';
+import PageNotFound from './common/PageNotFound';
 
 class App extends Component {
   componentDidMount() {
@@ -18,11 +19,12 @@ class App extends Component {
     return (
       <div className="container">
         <Route exact path="/" component={HomePage} />
-        <Route path="/react" component={ReactPage} />
-        <Route path="/redux" component={ReduxPage} />
-        <Route path="/udacity" component={UdacityPage} />
-        <Route path="/posts/:id" component={PostDetails} />
+        <Route exact path="/react" component={ReactPage} />
+        <Route exact path="/redux" component={ReduxPage} />
+        <Route exact path="/udacity" component={UdacityPage} />
+        <Route path="/:category/:id" component={PostDetails} />
         <Route path="/add-post" component={AddPostPage} />
+        <Route path="/404" component={PageNotFound} />
       </div>
     );
   }

@@ -84,6 +84,15 @@ class PostDetails extends Component {
     const {deletePost, setToEditing, setToNotEditing, getCommentLinkText} = this;
     const {author, title, body, timestamp} = this.props.post.item;
 
+    if (!postLoading) {
+      if (Object.keys(post).length === 0) {
+        console.log(this);
+        return (
+          <Redirect to='/404' />
+        );
+      }
+    }
+
     return (
       <div>
         <Navigation />

@@ -15,13 +15,13 @@ class Navigation extends Component {
             <NavLink exact to="/">All</NavLink>
           </li>
           <li>
-            <NavLink to="/react">{capitalize(REACT)}</NavLink>
+            <NavLink exact to="/react">{capitalize(REACT)}</NavLink>
           </li>
           <li>
-            <NavLink to="/redux">{capitalize(REDUX)}</NavLink>
+            <NavLink exact to="/redux">{capitalize(REDUX)}</NavLink>
           </li>
           <li>
-            <NavLink to="/udacity">{capitalize(UDACITY)}</NavLink>
+            <NavLink exact to="/udacity">{capitalize(UDACITY)}</NavLink>
           </li>
           <li className="add-post">
             <NavLink to="/add-post">

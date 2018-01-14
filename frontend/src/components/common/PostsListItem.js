@@ -7,7 +7,7 @@ const PostsListItem = (props) => {
 
   return (
     <div>
-      <p>{index + 1}. <Link to={`/posts/${post.id}`}>{post.title}</Link></p>
+      <p>{index + 1}. <Link to={`/${post.category}/${post.id}`}>{post.title}</Link></p>
       <span>
         {post.voteScore} pts |&nbsp;
         by {post.author} |&nbsp;
