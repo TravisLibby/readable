@@ -3,9 +3,8 @@ import {connect} from 'react-redux';
 import Loader from './common/Loader';
 import PostsList from './common/PostsList';
 import Navigation from './Navigation';
-import {categories} from '../constants/categories';
 
-class UdacityPage extends Component {
+class CategoryPosts extends Component {
   render() {
     const {posts, isLoading} = this.props;
 
@@ -18,11 +17,12 @@ class UdacityPage extends Component {
   }
 }
 
-const mapStateToProps = ({posts}) => {
+const mapStateToProps = ({posts}, ownProps) => {
+  const category = ownProps.location.pathname.slice(1);
   return {
-    posts: posts.items.filter(post => post.category === categories.UDACITY),
+    posts: posts.items.filter(post => post.category === category),
     isLoading: posts.isLoading
   };
 };
 
-export default connect(mapStateToProps)(UdacityPage);
+export default connect(mapStateToProps)(CategoryPosts);

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import {Route, withRouter} from 'react-router-dom';
+import {Switch, Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchPosts} from '../actions';
+import {fetchPosts, fetchCategories} from '../actions';
 import HomePage from './HomePage';
-import ReactPage from './ReactPage';
-import ReduxPage from './ReduxPage';
-import UdacityPage from './UdacityPage';
+import CategoryPosts from './CategoryPosts';
 import PostDetails from './common/PostDetails';
 import AddPostPage from './AddPostPage';
 import PageNotFound from './common/PageNotFound';
@@ -13,18 +11,19 @@ import PageNotFound from './common/PageNotFound';
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
+    this.props.dispatch(fetchCategories());
   }
 
   render() {
     return (
       <div className="container">
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/react" component={ReactPage} />
-        <Route exact path="/redux" component={ReduxPage} />
-        <Route exact path="/udacity" component={UdacityPage} />
-        <Route path="/:category/:id" component={PostDetails} />
-        <Route path="/add-post" component={AddPostPage} />
-        <Route path="/404" component={PageNotFound} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/add-post" component={AddPostPage} />
+          <Route exact path="/:category" component={CategoryPosts} />
+          <Route exact path="/:category/:id" component={PostDetails} />
+          <Route path="/404" component={PageNotFound} />
+        </Switch>
       </div>
     );
   }

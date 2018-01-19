@@ -87,7 +87,6 @@ class PostDetails extends Component {
 
     if (!postLoading) {
       if (Object.keys(post).length === 0) {
-        console.log(this);
         return (
           <Redirect to='/404' />
         );

@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
-import {categories} from '../constants/categories';
+import {connect} from 'react-redux';
+import {NavLink, withRouter} from 'react-router-dom';
 import {capitalize} from '../utils/helpers';
 import FaPlusSquare from 'react-icons/lib/fa/plus-square';
 
 class Navigation extends Component {
+  state = {
+    categories: []
+  };
+
+  componentDidMount() {
+
+  }
   render() {
-    const {REACT, REDUX, UDACITY} = categories;
+    const {categories} = this.props;
 
     return (
       <div className="navigation">
@@ -14,17 +21,17 @@ class Navigation extends Component {
           <li>
             <NavLink exact to="/">All</NavLink>
           </li>
-          <li>
-            <NavLink exact to="/react">{capitalize(REACT)}</NavLink>
-          </li>
-          <li>
-            <NavLink exact to="/redux">{capitalize(REDUX)}</NavLink>
-          </li>
-          <li>
-            <NavLink exact to="/udacity">{capitalize(UDACITY)}</NavLink>
-          </li>
+        </ul>
+        <ul>
+          {categories.items.map(category => (
+            <li key={category.name}>
+              <NavLink exact to={`/${category.path}`}>{capitalize(category.name)}</NavLink>
+            </li>
+          ))}
+        </ul>
+        <ul>
           <li className="add-post">
-            <NavLink to="/add-post">
+            <NavLink exact to="/add-post">
               <span><FaPlusSquare className="add-post-icon" /> Add Post</span>
             </NavLink>
           </li>
@@ -34,4 +41,10 @@ class Navigation extends Component {
   }
 };
 
-export default Navigation;
+const mapStateToProps = ({categories}) => {
+  return {
+    categories
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(Navigation));

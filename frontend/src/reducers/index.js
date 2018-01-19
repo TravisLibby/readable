@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
-import {RECEIVE_POSTS,
+import {RECEIVE_CATEGORIES,
+        RECEIVE_POSTS,
         RETRIEVING_POST,
         RECEIVE_POST,
         VOTE_ON_POST,
@@ -18,6 +19,18 @@ import {RECEIVE_POSTS,
         EDITING_POST,
         CANCEL_EDITING_POST} from '../actions';
 import {sortingOrder} from '../constants/sortingOrder';
+
+const categories = (state = {items: []}, action) => {
+  switch (action.type) {
+    case RECEIVE_CATEGORIES:
+      return {
+        ...state,
+        items: action.categories.categories
+      };
+    default:
+      return state;
+  }
+};
 
 const posts = (state = {isLoading: true, items: []}, action) => {
   switch (action.type) {
@@ -209,4 +222,4 @@ const comments = (state = {isLoading: true, commentEditing: null, items: []}, ac
   }
 };
 
-export default combineReducers({posts, post, comments});
+export default combineReducers({categories, posts, post, comments});

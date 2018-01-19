@@ -5,6 +5,8 @@ const headers = {
   'Authorization': 'whatever-you-want'
 };
 
+export const getCategories = () => fetch(`${api}/categories`, {headers}).then(res => res.json());
+
 export const getPosts = () => fetch(`${api}/posts`, {headers}).then(res => res.json());
 
 export const getPostById = id => fetch(`${api}/posts/${id}`, {headers}).then(res => res.json());

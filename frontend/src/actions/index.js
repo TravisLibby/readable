@@ -1,5 +1,6 @@
 import * as ReadableAPI from '../utils/api';
 
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const RECEIVE_POSTS = 'RECEIVE_ALL_POSTS';
 export const RETRIEVING_POST = 'RETRIEVING_POST';
 export const RECEIVE_POST = 'RECEIVE_POST';
@@ -18,6 +19,28 @@ export const DELETE_POST = 'DELETE_POST';
 export const EDITING_POST = 'EDITING_POST';
 export const CANCEL_EDITING_POST = 'CANCEL_EDITING_POST';
 export const EDIT_POST = 'EDIT_POST';
+
+/**
+ * Action creator for receiving categories.
+ *
+ * @param  {Array} categories All of the categories.
+ * @return {Object} The action for when categories have been received.
+ */
+export const receiveCategories = (categories) => {
+  return {
+    type: RECEIVE_CATEGORIES,
+    categories
+  };
+};
+
+/**
+ * Dispatches the receiveCategories action creator once all categories have been received.
+ *
+ * @return {void}
+ */
+export const fetchCategories = () => dispatch => (
+  ReadableAPI.getCategories().then(categories => dispatch(receiveCategories(categories)))
+);
 
 /**
  * Action creator for receiving posts.
