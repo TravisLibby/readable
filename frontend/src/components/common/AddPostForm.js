@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {categories} from '../../constants/categories';
 import {capitalize} from '../../utils/helpers';
 import {fetchAddPost} from '../../actions';
 import uuid from 'uuid';
@@ -72,15 +71,15 @@ class AddPostForm extends Component {
   render() {
     const {category, author, title, body, formInvalid} = this.state;
     const {handleInputChange, handleSubmit} = this;
-    const {REACT, REDUX, UDACITY} = categories;
+    const {categories} = this.props;
 
     return (
       <form className="post-form" name="addPostForm" onSubmit={(e) => handleSubmit(e)}>
         <select name="category" value={category} onChange={(e) => handleInputChange(e)}>
           <option value="" disabled>Select a Category</option>
-          <option value={REACT}>{capitalize(REACT)}</option>
-          <option value={REDUX}>{capitalize(REDUX)}</option>
-          <option value={UDACITY}>{capitalize(UDACITY)}</option>
+          {categories.items.map(item => (
+            <option key={item.name} value={item.name}>{capitalize(item.name)}</option>
+          ))}
         </select><br />
         <input
           type="text"
@@ -109,4 +108,10 @@ class AddPostForm extends Component {
   };
 }
 
-export default connect()(AddPostForm);
+const mapStateToProps = ({categories}) => {
+  return {
+    categories
+  };
+};
+
+export default connect(mapStateToProps)(AddPostForm);
