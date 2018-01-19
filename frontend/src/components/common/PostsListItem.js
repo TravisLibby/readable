@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {formatDate} from '../../utils/helpers';
+import VotingBar from '../common/VotingBar';
 import EditPostForm from '../common/EditPostForm';
 import {fetchDeletePost, editingPost, cancelEditingPost} from '../../actions';
 
@@ -49,11 +50,11 @@ class PostsListItem extends Component {
           </span>
         </p>
         <span>
-          {post.voteScore} pts |&nbsp;
           by {post.author} |&nbsp;
           {formatDate(post.timestamp)} |&nbsp;
           {post.commentCount} {post.commentCount > 1 ? "comments" : "comment"}
         </span>
+        <VotingBar type={"post"} item={post} />
         <div>
           {(isEditing && post.id === editingPostId) && (
             <div><br />

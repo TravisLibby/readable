@@ -66,7 +66,7 @@ const posts = (state = {isLoading: true, items: []}, action) => {
         ...state,
         items: state.items.map((currPost) => {
           if (currPost.id === post.id) {
-            currPost.voteScore = post.voteScore
+            return post;
           }
           return currPost;
         })
