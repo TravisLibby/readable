@@ -44,8 +44,8 @@ class PostDetails extends Component {
   /**
    * Marks the post as in editing mode.
    */
-  setToEditing = () => {
-    this.props.dispatch(editingPost());
+  setToEditing = (post) => {
+    this.props.dispatch(editingPost(post));
   };
 
   /**
@@ -103,7 +103,7 @@ class PostDetails extends Component {
           <div className="post-details">
             <h3 className="post-title">{title}</h3>
             <div className="edit-delete">
-              <span className="edit" onClick={() => setToEditing()}>Edit</span> |&nbsp;
+              <span className="edit" onClick={() => setToEditing(post)}>Edit</span> |&nbsp;
               <span className="delete" onClick={() => deletePost(post.id)}>Delete</span>
             </div>
             <span>by {author} | {formatDate(timestamp)}</span>

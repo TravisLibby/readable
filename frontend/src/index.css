@@ -195,24 +195,24 @@ ul {
   float: right;
 }
 
-.post-details span.delete,
-.post-details span.edit {
+span.delete,
+span.edit {
   cursor: pointer;
 }
 
-.post-details span.delete {
+span.delete {
   color: #e74c3c;
 }
 
-.post-details span.delete:hover {
+span.delete:hover {
   color: #c0392b;
 }
 
-.post-details span.edit {
+span.edit {
   color: #3498db;
 }
 
-.post-details span.edit:hover {
+span.edit:hover {
   color: #2980b9;
 }
 

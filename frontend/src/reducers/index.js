@@ -49,6 +49,17 @@ const posts = (state = {isLoading: true, items: []}, action) => {
         ...state,
         items: state.items.filter((post => post.id !== action.id))
       }
+    case EDIT_POST:
+      const editedPost = action.post;
+      return {
+        ...state,
+        items: state.items.map((currPost) => {
+          if (currPost.id === editedPost.id) {
+            return editedPost;
+          }
+          return currPost;
+        })
+      }
     case VOTE_ON_POST:
       const {post} = action;
       return {
@@ -132,12 +143,15 @@ const post = (state = {isLoading: true, isEditing: false, item: {}}, action) => 
     case EDITING_POST:
       return {
         ...state,
-        isEditing: true
+        isEditing: true,
+        postBeingEdited: action.post.id || '',
+        item: action.post
       };
     case CANCEL_EDITING_POST:
       return {
         ...state,
-        isEditing: false
+        isEditing: false,
+        postBeingEdited: ''
       };
     case ADD_COMMENT:
       return {

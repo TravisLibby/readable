@@ -238,9 +238,10 @@ export const fetchDeletePost = id => dispatch => (
  *
  * @return {Object} The action for when a post is being edited.
  */
-export const editingPost = () => {
+export const editingPost = (post) => {
   return {
-    type: EDITING_POST
+    type: EDITING_POST,
+    post
   };
 };
 
